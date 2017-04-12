@@ -1,0 +1,9 @@
+c:\Users\Marius\documents\visual studio 2017\Projects\WebAPI\ItemDataAccess\bin\Debug\ItemDataAccess.dll
+c:\Users\Marius\documents\visual studio 2017\Projects\WebAPI\ItemDataAccess\bin\Debug\ItemDataAccess.pdb
+c:\Users\Marius\documents\visual studio 2017\Projects\WebAPI\ItemDataAccess\obj\Debug\ItemDataAccess.dll
+c:\Users\Marius\documents\visual studio 2017\Projects\WebAPI\ItemDataAccess\obj\Debug\ItemDataAccess.pdb
+c:\Users\Marius\documents\visual studio 2017\Projects\WebAPI\ItemDataAccess\bin\Debug\ItemDataAccess.dll.config
+c:\Users\Marius\documents\visual studio 2017\Projects\WebAPI\ItemDataAccess\bin\Debug\EntityFramework.dll
+c:\Users\Marius\documents\visual studio 2017\Projects\WebAPI\ItemDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+c:\Users\Marius\documents\visual studio 2017\Projects\WebAPI\ItemDataAccess\bin\Debug\EntityFramework.xml
+c:\Users\Marius\documents\visual studio 2017\Projects\WebAPI\ItemDataAccess\bin\Debug\EntityFramework.SqlServer.xml
