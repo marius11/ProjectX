@@ -15,7 +15,6 @@ namespace Presentation.Controllers
             return View();
         }
 
-        // GET: Item
         [HttpGet]
         [Route("items")]
         public async Task<ActionResult> GetItems()

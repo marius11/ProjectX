@@ -1,35 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
 using ItemDataAccess;
+using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace WebAPI.Controllers
 {
     public class ItemsController : ApiController
     {
         [HttpGet]
-        public IEnumerable<Items> LoadAllItems()
+        public async Task<HttpResponseMessage> LoadAllItems()
         {
             using (ItemDBEntities entities = new ItemDBEntities())
             {
-                return entities.Items.ToList();
+                var items = await (from i in entities.Items
+                             select new
+                             {
+                                 Id = i.Id,
+                                 Text = i.Text
+                             }).ToListAsync();
+
+                return Request.CreateResponse(HttpStatusCode.OK, items);
             }
         }
 
         [HttpGet]
-        public HttpResponseMessage LoadItemById(int id)
+        public async Task<HttpResponseMessage> LoadItemById(int id)
         {
             using (ItemDBEntities entities = new ItemDBEntities())
             {
-                var entity = entities.Items.ToList().FirstOrDefault(i => i.Id == id);
+                var entity = await entities.Items.SingleAsync(i => i.Id == id);
 
                 if (entity == null)
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Item with id = " + id.ToString() + " not found");
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Item with id {id} has not been found");
                 }
                 else
                 {
@@ -39,14 +46,14 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage AddItem([FromBody] Items item)
+        public async Task<HttpResponseMessage> AddItem([FromBody] Items item)
         {
             try
             {
                 using (ItemDBEntities entities = new ItemDBEntities())
                 {
                     entities.Items.Add(item);
-                    entities.SaveChanges();
+                    await entities.SaveChangesAsync();
 
                     var message = Request.CreateResponse(HttpStatusCode.Created, item);
                     message.Headers.Location = new Uri(Request.RequestUri + "/" + item.Id.ToString());
@@ -60,17 +67,17 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete]
-        public HttpResponseMessage DeleteItemById(int id)
+        public async Task<HttpResponseMessage> DeleteItemById(int id)
         {
             try
             {
                 using (ItemDBEntities entities = new ItemDBEntities())
                 {
-                    var entity = entities.Items.FirstOrDefault(i => i.Id == id);
+                    var entity = await entities.Items.SingleAsync(i => i.Id == id);
 
                     if (entity == null)
                     {
-                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Item with id = " + id.ToString() + " not found");
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Item with id {id} has not been found");
                     }
                     else
                     {
@@ -87,23 +94,23 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public HttpResponseMessage UpdateItemById(int id, [FromBody] Items item)
+        public async Task<HttpResponseMessage> UpdateItemById(int id, [FromBody] Items item)
         {
             try
             {
                 using (ItemDBEntities entities = new ItemDBEntities())
                 {
-                    var entity = entities.Items.FirstOrDefault(i => i.Id == id);
+                    var entity = await entities.Items.SingleAsync(i => i.Id == id);
 
                     if (entity == null)
                     {
-                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Item with id = " + id.ToString() + " not found");
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Item with id {id} has not been found");
                     }
                     else
                     {
                         entity.Text = item.Text;
-
                         entities.SaveChanges();
+
                         return Request.CreateResponse(HttpStatusCode.OK, entity);
                     }
                 }
