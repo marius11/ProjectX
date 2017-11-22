@@ -31,10 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -49,34 +49,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ItemDataModel.Context.cs">
+    <Compile Include="Item.cs">
+      <DependentUpon>ItemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ItemDataModel.Context.tt</DependentUpon>
+      <DependentUpon>ItemModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ItemDataModel.cs">
+    <Compile Include="ItemModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ItemDataModel.tt</DependentUpon>
+      <DependentUpon>ItemModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ItemDataModel.Designer.cs">
+    <Compile Include="ItemModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ItemDataModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Items.cs">
-      <DependentUpon>ItemDataModel.tt</DependentUpon>
+      <DependentUpon>ItemModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="ItemDataModel.edmx">
+    <EntityDeploy Include="ItemModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ItemDataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ItemModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="ItemDataModel.edmx.diagram">
-      <DependentUpon>ItemDataModel.edmx</DependentUpon>
+    <None Include="ItemModel.edmx.diagram">
+      <DependentUpon>ItemModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -84,15 +84,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ItemDataModel.Context.tt">
+    <Content Include="ItemModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ItemDataModel.edmx</DependentUpon>
-      <LastGenOutput>ItemDataModel.Context.cs</LastGenOutput>
+      <DependentUpon>ItemModel.edmx</DependentUpon>
+      <LastGenOutput>ItemModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="ItemDataModel.tt">
+    <Content Include="ItemModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ItemDataModel.edmx</DependentUpon>
-      <LastGenOutput>ItemDataModel.cs</LastGenOutput>
+      <DependentUpon>ItemModel.edmx</DependentUpon>
+      <LastGenOutput>ItemModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

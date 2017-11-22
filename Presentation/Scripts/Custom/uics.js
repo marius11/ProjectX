@@ -3,7 +3,7 @@
     event.preventDefault();
 
     $.ajax({
-      url: "http://localhost:64307/api/items",
+      url: "https://localhost:44355/api/items",
       type: "GET",
       dataType: "json",
       contentType: "application/json; charset=utf-8",
@@ -45,7 +45,7 @@
 
     var jsonData = { Text: $("textarea").val() };
     $.ajax({
-      url: "http://localhost:64307/api/items",
+      url: "https://localhost:44355/api/items",
       type: "POST",
       data: JSON.stringify(jsonData),
       dataType: "json",

@@ -14,9 +14,9 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> LoadAllItems()
         {
-            using (ItemDBEntities entities = new ItemDBEntities())
+            using (ProjectXContext db = new ProjectXContext())
             {
-                var items = await (from i in entities.Items
+                var items = await (from i in db.Items
                              select new
                              {
                                  Id = i.Id,
@@ -30,9 +30,9 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> LoadItemById(int id)
         {
-            using (ItemDBEntities entities = new ItemDBEntities())
+            using (ProjectXContext db = new ProjectXContext())
             {
-                var entity = await entities.Items.SingleAsync(i => i.Id == id);
+                var entity = await db.Items.SingleAsync(i => i.Id == id);
 
                 if (entity == null)
                 {
@@ -46,14 +46,14 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<HttpResponseMessage> AddItem([FromBody] Items item)
+        public async Task<HttpResponseMessage> AddItem([FromBody] Item item)
         {
             try
             {
-                using (ItemDBEntities entities = new ItemDBEntities())
+                using (ProjectXContext db = new ProjectXContext())
                 {
-                    entities.Items.Add(item);
-                    await entities.SaveChangesAsync();
+                    db.Items.Add(item);
+                    await db.SaveChangesAsync();
 
                     var message = Request.CreateResponse(HttpStatusCode.Created, item);
                     message.Headers.Location = new Uri(Request.RequestUri + "/" + item.Id.ToString());
@@ -71,9 +71,9 @@ namespace WebAPI.Controllers
         {
             try
             {
-                using (ItemDBEntities entities = new ItemDBEntities())
+                using (ProjectXContext db = new ProjectXContext())
                 {
-                    var entity = await entities.Items.SingleAsync(i => i.Id == id);
+                    var entity = await db.Items.SingleAsync(i => i.Id == id);
 
                     if (entity == null)
                     {
@@ -81,8 +81,8 @@ namespace WebAPI.Controllers
                     }
                     else
                     {
-                        entities.Items.Remove(entity);
-                        entities.SaveChanges();
+                        db.Items.Remove(entity);
+                        db.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK);
                     }
                 }
@@ -94,13 +94,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<HttpResponseMessage> UpdateItemById(int id, [FromBody] Items item)
+        public async Task<HttpResponseMessage> UpdateItemById(int id, [FromBody] Item item)
         {
             try
             {
-                using (ItemDBEntities entities = new ItemDBEntities())
+                using (ProjectXContext db = new ProjectXContext())
                 {
-                    var entity = await entities.Items.SingleAsync(i => i.Id == id);
+                    var entity = await db.Items.SingleAsync(i => i.Id == id);
 
                     if (entity == null)
                     {
@@ -109,7 +109,7 @@ namespace WebAPI.Controllers
                     else
                     {
                         entity.Text = item.Text;
-                        entities.SaveChanges();
+                        db.SaveChanges();
 
                         return Request.CreateResponse(HttpStatusCode.OK, entity);
                     }

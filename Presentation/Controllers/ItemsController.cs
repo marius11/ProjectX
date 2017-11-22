@@ -8,7 +8,7 @@ namespace Presentation.Controllers
 {
     public class ItemsController : Controller
     {
-        private static readonly string baseURI = "http://localhost:64307/api/items";
+        private static readonly string baseURI = "https://localhost:44355/api/items";
 
         public ActionResult Index()
         {
