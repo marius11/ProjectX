@@ -13,10 +13,10 @@ namespace ItemDataAccess
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TestDBEntities : DbContext
+    public partial class ItemDBEntities : DbContext
     {
-        public TestDBEntities()
-            : base("name=TestDBEntities")
+        public ItemDBEntities()
+            : base("name=ItemDBEntities")
         {
         }
     
@@ -25,6 +25,6 @@ namespace ItemDataAccess
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<Items> Items { get; set; }
     }
 }

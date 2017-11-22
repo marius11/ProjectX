@@ -12,9 +12,9 @@ namespace WebAPI.Controllers
     public class ItemsController : ApiController
     {
         [HttpGet]
-        public IEnumerable<Item> LoadAllItems()
+        public IEnumerable<Items> LoadAllItems()
         {
-            using (TestDBEntities entities = new TestDBEntities())
+            using (ItemDBEntities entities = new ItemDBEntities())
             {
                 return entities.Items.ToList();
             }
@@ -23,9 +23,9 @@ namespace WebAPI.Controllers
         [HttpGet]
         public HttpResponseMessage LoadItemById(int id)
         {
-            using (TestDBEntities entities = new TestDBEntities())
+            using (ItemDBEntities entities = new ItemDBEntities())
             {
-                var entity = entities.Items.ToList().FirstOrDefault(i => i.id == id);
+                var entity = entities.Items.ToList().FirstOrDefault(i => i.Id == id);
 
                 if (entity == null)
                 {
@@ -39,17 +39,17 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage AddItem([FromBody] Item item)
+        public HttpResponseMessage AddItem([FromBody] Items item)
         {
             try
             {
-                using (TestDBEntities entities = new TestDBEntities())
+                using (ItemDBEntities entities = new ItemDBEntities())
                 {
                     entities.Items.Add(item);
                     entities.SaveChanges();
 
                     var message = Request.CreateResponse(HttpStatusCode.Created, item);
-                    message.Headers.Location = new Uri(Request.RequestUri + "/" + item.id.ToString());
+                    message.Headers.Location = new Uri(Request.RequestUri + "/" + item.Id.ToString());
                     return message;
                 }
             }
@@ -64,9 +64,9 @@ namespace WebAPI.Controllers
         {
             try
             {
-                using (TestDBEntities entities = new TestDBEntities())
+                using (ItemDBEntities entities = new ItemDBEntities())
                 {
-                    var entity = entities.Items.FirstOrDefault(i => i.id == id);
+                    var entity = entities.Items.FirstOrDefault(i => i.Id == id);
 
                     if (entity == null)
                     {
@@ -87,13 +87,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public HttpResponseMessage UpdateItemById(int id, [FromBody] Item item)
+        public HttpResponseMessage UpdateItemById(int id, [FromBody] Items item)
         {
             try
             {
-                using (TestDBEntities entities = new TestDBEntities())
+                using (ItemDBEntities entities = new ItemDBEntities())
                 {
-                    var entity = entities.Items.FirstOrDefault(i => i.id == id);
+                    var entity = entities.Items.FirstOrDefault(i => i.Id == id);
 
                     if (entity == null)
                     {
@@ -101,7 +101,7 @@ namespace WebAPI.Controllers
                     }
                     else
                     {
-                        entity.text = item.text;
+                        entity.Text = item.Text;
 
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, entity);

@@ -1,7 +1,5 @@
-﻿using Microsoft.Ajax.Utilities;
-using Presentation.Models;
+﻿using Presentation.Models;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -31,8 +29,6 @@ namespace Presentation.Controllers
                 {
                     items = await response.Content.ReadAsAsync<IEnumerable<Item>>();
                 }
-
-                items.ForEach(i => Trace.WriteLine(i.id + ", " + i.text));
 
                 return View(items);
             }

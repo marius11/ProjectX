@@ -1,7 +1,6 @@
 ﻿using System.Web.Http;
 using System.Web.Http.Cors;
 
-
 namespace WebAPI
 {
     public static class WebApiConfig
@@ -9,10 +8,7 @@ namespace WebAPI
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
-            // enable cors
-            var cors = new EnableCorsAttribute("http://localhost:51610", "*", "*");
-            config.EnableCors(cors);
+            config.EnableCors(new EnableCorsAttribute("http://localhost:51611,http://marius-pc:8080", "*", "*"));
 
             // Web API routes
             config.MapHttpAttributeRoutes();

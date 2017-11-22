@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ItemDataModelStoreContainer" CdmEntityContainer="TestDBEntities">
+  <EntityContainerMapping StorageEntityContainer="ItemDBModelStoreContainer" CdmEntityContainer="ItemDBEntities">
     <EntitySetMapping Name="Items">
-      <EntityTypeMapping TypeName="ItemDataModel.Item">
-        <MappingFragment StoreEntitySet="Item">
-          <ScalarProperty Name="text" ColumnName="text" />
-          <ScalarProperty Name="id" ColumnName="id" />
+      <EntityTypeMapping TypeName="ItemDBModel.Items">
+        <MappingFragment StoreEntitySet="Items">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

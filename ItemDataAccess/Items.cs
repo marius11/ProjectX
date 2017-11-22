@@ -12,9 +12,9 @@ namespace ItemDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Item
+    public partial class Items
     {
-        public string text { get; set; }
-        public int id { get; set; }
+        public int Id { get; set; }
+        public string Text { get; set; }
     }
 }

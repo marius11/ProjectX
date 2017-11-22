@@ -1,3 +1,4 @@
+C:\Users\Marius\Documents\Visual Studio 2017\Projects\WebAPI\Presentation\obj\Debug\Presentation.csproj.CoreCompileInputs.cache
 C:\Users\Marius\Documents\Visual Studio 2017\Projects\WebAPI\Presentation\bin\ApplicationInsights.config
 C:\Users\Marius\Documents\Visual Studio 2017\Projects\WebAPI\Presentation\bin\roslyn\csc.exe
 C:\Users\Marius\Documents\Visual Studio 2017\Projects\WebAPI\Presentation\bin\roslyn\csc.exe.config
