@@ -16,12 +16,13 @@ namespace WebAPI.Controllers
         {
             using (ProjectXContext db = new ProjectXContext())
             {
-                var items = await (from i in db.Items
-                             select new
-                             {
-                                 Id = i.Id,
-                                 Text = i.Text
-                             }).ToListAsync();
+                var items = await
+                    (from i in db.Items
+                     select new
+                     {
+                         i.Id,
+                         i.Text
+                     }).ToListAsync();
 
                 return Request.CreateResponse(HttpStatusCode.OK, items);
             }
@@ -82,7 +83,7 @@ namespace WebAPI.Controllers
                     else
                     {
                         db.Items.Remove(entity);
-                        db.SaveChanges();
+                        await db.SaveChangesAsync();
                         return Request.CreateResponse(HttpStatusCode.OK);
                     }
                 }
@@ -109,7 +110,7 @@ namespace WebAPI.Controllers
                     else
                     {
                         entity.Text = item.Text;
-                        db.SaveChanges();
+                        await db.SaveChangesAsync();
 
                         return Request.CreateResponse(HttpStatusCode.OK, entity);
                     }
